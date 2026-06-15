@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <title>Books – NNM Library</title>
+    <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+
+<%- include('partials/sidebar', { active: 'books' }) %>
+
+<div class="main">
+    <div class="page-top">
+        <div>
+            <h1>Books</h1>
+            <p class="sub"><%= books.length %> books in the library</p>
+        </div>
+        <a href="/books/add" class="btn-primary">＋ Add Book</a>
+    </div>
+
+    <div class="table-card">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Qty</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if(books.length === 0){ %>
+                <tr><td colspan="5" class="empty-row">No books found. Add one!</td></tr>
+                <% } %>
+                <% books.forEach(book => { %>
+                <tr>
+                    <td><span class="id-badge">#<%= book.id %></span></td>
+                    <td class="fw600"><%= book.title %></td>
+                    <td class="text-muted"><%= book.author %></td>
+                    <td>
+                        <span class="qty-badge <%= book.quantity > 5 ? 'qty-high' : book.quantity > 0 ? 'qty-low' : 'qty-zero' %>">
+                            <%= book.quantity %>
+                        </span>
+                    </td>
+                    <td>
+                        <div class="action-group">
+                            <a href="/books/edit/<%= book.id %>" class="act-btn act-edit">✏ Edit</a>
+                            <a href="/books/delete/<%= book.id %>" class="act-btn act-delete"
+                               onclick="return confirm('Delete this book?')">🗑 Delete</a>
+                        </div>
+                    </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

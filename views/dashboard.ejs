@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <title>Dashboard – NNM Library</title>
+    <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+
+<%- include('partials/sidebar', { active: 'dashboard' }) %>
+
+<div class="main">
+
+    <div class="page-top">
+        <div>
+            <h1>Dashboard</h1>
+            <p class="sub">Welcome back, <strong><%= librarian.FULLNAME %></strong> 👋</p>
+        </div>
+    </div>
+
+    <!-- Stat cards -->
+    <div class="stat-grid">
+        <div class="stat-card" style="border-top:4px solid #3b82f6">
+            <div class="stat-ico">📚</div>
+            <div class="stat-val"><%= totalBooks %></div>
+            <div class="stat-lbl">Total Books</div>
+        </div>
+        <div class="stat-card" style="border-top:4px solid #10b981">
+            <div class="stat-ico">🎓</div>
+            <div class="stat-val"><%= totalStudents %></div>
+            <div class="stat-lbl">Students</div>
+        </div>
+        <div class="stat-card" style="border-top:4px solid #f59e0b">
+            <div class="stat-ico">📤</div>
+            <div class="stat-val"><%= totalBorrowed %></div>
+            <div class="stat-lbl">Borrowed</div>
+        </div>
+        <div class="stat-card" style="border-top:4px solid #8b5cf6">
+            <div class="stat-ico">🏛️</div>
+            <div class="stat-val"><%= totalVisits %></div>
+            <div class="stat-lbl">Library Visits</div>
+        </div>
+    </div>
+
+    <!-- Quick links -->
+    <div class="quick-links">
+        <a href="/books/add" class="ql-card">
+            <span class="ql-ico">➕</span>
+            <span class="ql-label">Add New Book</span>
+        </a>
+        <a href="/books" class="ql-card">
+            <span class="ql-ico">📖</span>
+            <span class="ql-label">Manage Books</span>
+        </a>
+        <a href="/borrowed" class="ql-card">
+            <span class="ql-ico">📤</span>
+            <span class="ql-label">Borrowed Records</span>
+        </a>
+        <a href="/visits" class="ql-card">
+            <span class="ql-ico">🏛️</span>
+            <span class="ql-label">Library Visits</span>
+        </a>
+    </div>
+
+</div>
+</body>
+</html>

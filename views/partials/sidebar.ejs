@@ -1,0 +1,33 @@
+<div class="sidebar">
+    <div class="sidebar-brand">
+        <span class="brand-icon">📚</span>
+        <div>
+            <div class="brand-name">NNM Library</div>
+            <div class="brand-sub">Management System</div>
+        </div>
+    </div>
+
+    <nav class="sidebar-nav">
+        <a href="/librarian/dashboard" class="<%= active==='dashboard' ? 'active' : '' %>">
+            <span>🏠</span> Dashboard
+        </a>
+        <a href="/books" class="<%= active==='books' ? 'active' : '' %>">
+            <span>📖</span> Books
+        </a>
+        <a href="/borrowed" class="<%= active==='borrowed' ? 'active' : '' %>">
+            <span>📤</span> Borrowed Books
+        </a>
+        <a href="/visits" class="<%= active==='visits' ? 'active' : '' %>">
+            <span>🏛️</span> Library Visits
+        </a>
+    </nav>
+
+    <div class="sidebar-footer">
+        <a href="/" class="sf-student">
+            <span>🎓</span> Student Portal
+        </a>
+        <a href="/librarian/logout" class="sf-logout">
+            <span>🚪</span> Logout
+        </a>
+    </div>
+</div>

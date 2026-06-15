@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <title>Library Visits – NNM Library</title>
+    <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+
+<%- include('partials/sidebar', { active: 'visits' }) %>
+
+<div class="main">
+    <div class="page-top">
+        <div>
+            <h1>Library Visits</h1>
+            <p class="sub"><%= records.length %> total visits &nbsp;•&nbsp; <%= uniqueStudents %> unique students</p>
+        </div>
+    </div>
+
+    <!-- Summary row -->
+    <div class="stat-grid" style="margin-bottom:24px">
+        <div class="stat-card" style="border-top:4px solid #8b5cf6">
+            <div class="stat-ico">📋</div>
+            <div class="stat-val"><%= records.length %></div>
+            <div class="stat-lbl">Total Visits</div>
+        </div>
+        <div class="stat-card" style="border-top:4px solid #0ea5e9">
+            <div class="stat-ico">🎓</div>
+            <div class="stat-val"><%= uniqueStudents %></div>
+            <div class="stat-lbl">Unique Students</div>
+        </div>
+    </div>
+
+    <div class="table-card">
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>USN</th>
+                    <th>Student Name</th>
+                    <th>Branch</th>
+                    <th>Semester</th>
+                    <th>Date</th>
+                    <th>Entry Time</th>
+                    <th>Exit Time</th>
+                    <th>Duration</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if(records.length === 0){ %>
+                <tr><td colspan="9" class="empty-row">No visit records found.</td></tr>
+                <% } %>
+                <% records.forEach(r => { %>
+                <tr>
+                    <td><span class="id-badge">#<%= r.id %></span></td>
+                    <td class="fw600 text-blue"><%= r.usn %></td>
+                    <td><%= r.FULLNAME || '—' %></td>
+                    <td><span class="branch-badge"><%= r.BRANCH || '—' %></span></td>
+                    <td><%= r.SEM ? 'Sem ' + r.SEM : '—' %></td>
+                    <td><%= r.visit_date || '—' %></td>
+                    <td>🕐 <%= r.entry_time %></td>
+                    <td>
+                        <% if(r.exit_time === '—'){ %>
+                            <span class="status-badge" style="background:#dcfce7;color:#15803d;border:1px solid #bbf7d0">🟢 Active</span>
+                        <% } else { %>
+                            🕑 <%= r.exit_time %>
+                        <% } %>
+                    </td>
+                    <td>
+                        <% if(r.duration === '—'){ %>
+                            <span class="status-badge status-blue">⏳ In progress</span>
+                        <% } else { %>
+                            <span class="status-badge status-blue">⏱ <%= r.duration %></span>
+                        <% } %>
+                    </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

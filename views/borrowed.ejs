@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <title>Borrowed Books – NNM Library</title>
+    <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+
+<%- include('partials/sidebar', { active: 'borrowed' }) %>
+
+<div class="main">
+    <div class="page-top">
+        <div>
+            <h1>Borrowed Books</h1>
+            <p class="sub"><%= records.length %> total borrow records</p>
+        </div>
+    </div>
+
+    <div class="table-card">
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Student USN</th>
+                    <th>Student Name</th>
+                    <th>Branch</th>
+                    <th>Book ID</th>
+                    <th>Book Title</th>
+                    <th>Author</th>
+                    <th>Borrowed On</th>
+                    <th>Return By</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if(records.length === 0){ %>
+                <tr><td colspan="10" class="empty-row">No borrow records found.</td></tr>
+                <% } %>
+                <% records.forEach(r => { %>
+                <tr>
+                    <td><span class="id-badge">#<%= r.id %></span></td>
+                    <td class="fw600 text-blue"><%= r.USN %></td>
+                    <td><%= r.studentName %></td>
+                    <td><span class="branch-badge"><%= r.BRANCH %></span></td>
+                    <td><span class="id-badge">#<%= r.bookId %></span></td>
+                    <td class="fw600"><%= r.title %></td>
+                    <td class="text-muted"><%= r.author %></td>
+                    <td><%= r.borrowed_date %></td>
+                    <td><%= r.return_date %></td>
+                    <td>
+                        <span class="status-badge <%= r.status==='Returned' ? 'status-green' : 'status-yellow' %>">
+                            <%= r.status==='Returned' ? '✓ Returned' : '⏳ Borrowed' %>
+                        </span>
+                    </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
